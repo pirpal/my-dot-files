@@ -1,0 +1,127 @@
+set nocompatible
+set background=dark
+
+" File Type, Syntax Highlighting
+filetype on
+filetype plugin on
+filetype indent on              
+syntax enable
+syntax on                       
+
+" Appearance
+set title
+set number
+set ruler
+set wrap
+set scrolloff=18
+set guifont=Monaco
+set antialias
+set cursorline
+set visualbell
+set noerrorbells
+set linebreak   
+set showmatch   
+set incsearch
+set hlsearch
+set textwidth=70 " better for vsplit windows on a laptop
+set colorcolumn=+1
+
+" Backspace
+set backspace=indent,eol,start
+
+" Leader & Mappings
+let mapleader = ","
+inoremap jk <Esc>
+inoremap ** <Esc> " 
+nnoremap <leader>h :nohl<return>
+nnoremap <leader>c :close<return>
+nnoremap <leader>d :bdelete<return>
+nnoremap <leader>b :buffers<return>
+nnoremap <leader>v :vsplit<return>
+nnoremap <leader>n :bn<return>
+nnoremap <leader>s :source $MYVIRMC<return>
+
+" Python run with <F9>
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)
+
+" C language settings
+autocmd FileType c set foldmethod=syntax
+
+" Case & Search
+set ignorecase
+set smartcase
+
+" Indentation
+set autoindent
+set expandtab
+set shiftwidth=2
+set smartindent
+set smarttab
+set softtabstop=4
+
+" GUI stuff off for gvim
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+
+" File finding
+" search into subfolders:
+set path+=**
+
+" display matching files with tab:
+set wildmenu
+
+" Plugins
+call plug#begin("~/.vim/plugged") " dir for plugins
+
+Plug 'tpope/vim-commentary' " 'gcc' for comment/uncomment
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'townk/vim-autoclose'
+Plug 'plasticboy/vim-markdown'
+Plug 'xolox/vim-misc'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/promptline.vim'
+Plug 'SirVer/ultisnips'
+Plug 'vimwiki/vimwiki'
+Plug 'sheerun/vim-polyglot'
+Plug 'nelstrom/vim-markdown-folding'
+" COLORSCHEMES :
+Plug 'srcery-colors/srcery-vim'
+Plug 'pineapplegiant/spaceduck', {'branch': 'main'}
+Plug 'altercation/vim-colors-solarized'
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'ajmwagar/vim-deus'
+Plug 'jaredgorski/spacecamp'
+Plug 'morhetz/gruvbox'
+call plug#end()
+
+" Ultisnips config
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsEditSplit="vertical"
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
+" colorscheme spaceduck
+colorscheme srcery
+
+" Markdown extra settings
+let g:markdown_fenced_languages = ['bash', 'c', 'make', 'python']
+let g:markdown_syntax_conceal = 0
+let g:markdown_minlines = 100
+let g:markdown_folding = 1
+
+" vimwiki config
+let g:vimwiki_list = [{"path": "~/vimwiki/", "syntax": "markdown", "ext": ".md"}]
+let g:vimwiki_automatic_nested_syntaxes = 1
+
+
